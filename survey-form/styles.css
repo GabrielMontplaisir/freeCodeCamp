@@ -1,0 +1,94 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+body {
+  background-color: hsla(239, 26%, 60%, 1);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+header {
+  text-align: center;
+  padding-block: 3rem 2rem;
+}
+
+#title {
+  font-weight: 500;
+  padding-bottom: 0.75rem;
+}
+
+#description {
+  font-weight: 300;
+  font-style: italic;
+}
+
+.container {
+  background-color: hsla(239, 26%, 18%, 0.75);
+  width: 45rem;
+  margin-inline: auto;
+  padding: 0.75rem 2.5rem;
+  border-radius: 0.25rem;
+}
+
+fieldset {
+  border: none;
+  margin-top: 2rem;
+}
+
+label {
+  display: block;
+}
+
+select {
+  background-color: white;
+  color: #495057;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0.4rem 0.25rem 0.4rem 0;
+  min-width: 1.25rem;
+  min-height: 1.25rem;
+}
+
+.full-width {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin-block: 0.5rem 2rem;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.selection-label {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn {
+  background-color: hsla(143, 52%, 45%, 1);
+  color: white;
+  padding: 0.8rem;
+  cursor: pointer;
+}

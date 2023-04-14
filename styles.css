@@ -2,7 +2,7 @@
   --ff-header: "Raleway", sans-serif;
   --ff-primary: "Poppins", sans-serif;
 
-  --clr-white: hsla(0, 0%, 94%, 1);
+  --clr-white: hsl(0, 0%, 94%, 1);
   --clr-red: hsla(352, 59%, 47%, 1);
   --clr-blue: hsla(222, 29%, 38%, 1);
   --clr-gray: hsla(212, 15%, 22%, 1);
@@ -97,8 +97,8 @@ header {
 }
 
 #welcome-section h1 {
-  font-size: 3rem;
-  padding-bottom: 1rem;
+  font-size: clamp(1.5rem, 1.5rem + 1vw, 3rem);
+  padding: 1rem;
 }
 
 #welcome-section a {
@@ -136,7 +136,7 @@ header {
 
 #projects {
   --skew-angle: 5deg;
-  padding: 5rem;
+  padding: 3rem;
   position: relative;
   isolation: isolate;
 }
@@ -151,23 +151,23 @@ header {
 }
 
 #projects h2 {
-  font-size: 2.5rem;
+  font-size: clamp(1.25rem, 1.25rem + 1vw, 2.5rem);
   padding-block: 0.5rem;
   border-bottom: 1px solid var(--clr-white);
-  width: 30rem;
+  max-width: 30rem;
   margin-inline: auto;
 }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 3rem;
   text-align: center;
   padding-block: 2rem;
+  margin-inline: auto;
 }
 
 .project-tile {
-  border-radius: 0.25rem;
   overflow: hidden;
 }
 
@@ -177,6 +177,7 @@ header {
 
 .project-tile img {
   width: 100%;
+  border-radius: 0.25rem;
   transition: transform 0.4s ease;
 }
 
@@ -186,7 +187,9 @@ header {
 
 .project-tile p {
   background-color: var(--clr-gray);
-  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.25rem;
+  padding-block: 1rem;
 }
 
 .project-tile p::before {
@@ -223,15 +226,14 @@ footer {
 }
 
 #contact h2 {
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 1.5rem + 1vw, 3rem);
 }
 
 .social {
-  font-size: 1.35rem;
+  font-size: clamp(0.85rem, 0.85rem + 0.65vw, 1.35rem);
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 3rem;
+  justify-content: space-between;
+  padding-block: 3rem;
 }
 
 .social-link {

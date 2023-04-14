@@ -1,3 +1,25 @@
+:root {
+  --ff-default: "Open Sans", "Arial", sans-serif;
+  --fs-default: 1rem;
+
+  --fw-regular: 400;
+  --fw-bold: 700;
+
+  --clr-text: hsl(191, 26%, 13%);
+  --clr-background: hsl(110, 8%, 86%);
+  --clr-accent: hsl(39, 34%, 77%);
+  --clr-links: hsl(37, 28%, 55%);
+  --clr-button: hsl(34, 50%, 26%);
+}
+
+:root[dark] {
+  --clr-background: hsl(191, 26%, 13%);
+  --clr-text: hsl(110, 8%, 86%);
+  --clr-links: hsl(39, 34%, 77%);
+  --clr-button: hsl(37, 28%, 55%);
+  --clr-accent: hsl(34, 50%, 26%);
+}
+
 *,
 *::before,
 *::after {
@@ -19,29 +41,118 @@ body {
 }
 
 body {
-  font-family: "Open Sans", Arial, sans-serif;
-  color: #4d4e53;
+  font-family: var(--ff-default);
+  background-color: var(--clr-background);
+  font-size: var(--fs-default);
+  color: var(--clr-text);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1 {
+  font-weight: var(--fw-bold);
+  margin-bottom: 0.25rem;
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+h2 {
+  font-weight: var(--fw-regular);
+  font-size: 1.75rem;
+  padding-block: 0.5rem;
 }
 
 #navbar {
   position: fixed;
-  min-width: 18.5rem;
-  width: 19rem;
+  background-color: var(--clr-accent);
+  min-width: 19rem;
   height: 100%;
-  border-right: 3px solid hsl(1, 0%, 70%);
+  border-right: 3px solid var(--clr-text);
+  transform: translate(0);
+  transition: transform 0.5s ease;
+  box-shadow: 0 0 1rem hsl(191, 26%, 13%);
 }
 
-h1 {
-  font-weight: 300;
-  margin-bottom: 0.25rem;
-  font-size: 1.75rem;
-  color: black;
-  padding: 0.75rem 2rem;
+header {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
 }
 
-h1,
+header a {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 0.5rem;
+  color: var(--clr-links);
+  border: 1px solid var(--clr-links);
+  padding: 0.25rem;
+  border-radius: 0.3rem;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+header a:is(:hover, :focus) {
+  color: var(--clr-background);
+  background-color: var(--clr-links);
+}
+
+header:is(:hover, :focus-visible) .anchor {
+  opacity: 1;
+}
+
+.anchor {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#theme-btn,
+#collapse-btn {
+  width: 0;
+}
+
+#theme-btn:focus-visible + label,
+#collapse-btn:focus-visible + label {
+  outline: var(--clr-text) auto 5px;
+}
+
+#theme-btn + label {
+  position: absolute;
+  cursor: pointer;
+}
+
+#collapse-btn + label {
+  position: fixed;
+  bottom: 2%;
+  left: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+#navbar[aria-expanded="false"] {
+  transform: translateX(-20rem);
+}
+
+#navbar[aria-expanded="false"] #collapse-btn + label {
+  transform: translateX(20rem) rotate(180deg);
+}
+
 .nav-link {
   padding: 0.75rem 2rem;
+}
+
+.nav-link::before,
+.nav-link::after {
+  color: var(--clr-links);
+}
+
+.nav-link:is(:hover, :focus)::before {
+  content: ">";
+  padding-right: 0.5rem;
 }
 
 #navbar li {
@@ -52,7 +163,7 @@ h1,
 .nav-link {
   display: block;
   text-decoration: none;
-  color: #4d4e53;
+  color: var(--clr-text);
 }
 
 @media (max-width: 50em) {
@@ -70,12 +181,11 @@ h1,
   }
 
   #navbar header {
-    position: sticky;
-    top: 0;
-    overflow: hidden;
-    background-color: white;
     border-bottom: 1px solid;
-    text-align: center;
+  }
+
+  #collapse-btn + label {
+    display: none;
   }
 }
 
@@ -83,6 +193,7 @@ h1,
   font-size: 0.95rem;
   margin-inline: 21.5rem 2.75rem;
   padding-block: 1.5rem;
+  transition: margin-inline 0.5s ease;
 }
 
 @media (max-width: 50em) {
@@ -90,13 +201,6 @@ h1,
     margin-inline: 2rem;
     padding-block: 0.5rem 9rem;
   }
-}
-
-h2 {
-  font-weight: 400;
-  color: black;
-  font-size: 1.75rem;
-  padding-block: 0.5rem;
 }
 
 .main-section > *:not(header) {
@@ -113,10 +217,31 @@ p {
 }
 
 code {
-  display: block;
-  white-space: pre-line;
   line-height: 2;
   font-size: 0.75rem;
-  margin-left: 1.5rem;
   margin-block: 1rem;
+}
+
+.main-section a {
+  color: var(--clr-links);
+}
+
+.return-top {
+  text-decoration: none;
+  position: fixed;
+  bottom: 2%;
+  right: 3%;
+}
+
+.return-top i {
+  --icon-size: 1.5rem;
+  display: grid;
+  place-content: center;
+  background-color: var(--clr-links);
+  border-radius: 50%;
+  color: var(--clr-background);
+  padding: var(--icon-size);
+  width: var(--icon-size);
+  height: var(--icon-size);
+  font-size: var(--icon-size);
 }

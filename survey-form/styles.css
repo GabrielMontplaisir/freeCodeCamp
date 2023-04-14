@@ -1,3 +1,21 @@
+:root {
+  --ff-heading: "Playfair Display", serif;
+  --ff-primary: "Source Sans Pro", sans-serif;
+
+  --fw-xtra-light: 200;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-bold: 700;
+
+  --fs-default: 1.1rem;
+
+  --clr-background: hsl(165, 17%, 95%);
+  --clr-text: hsl(200, 4%, 13%);
+  --clr-container: hsl(0, 0%, 56%);
+  --clr-accent: hsl(25, 99%, 62%);
+  --clr-dark-accent: hsl(19, 88%, 54%);
+}
+
 *,
 *::before,
 *::after {
@@ -9,6 +27,7 @@
 html,
 body {
   min-height: 100vh;
+  line-height: 1.5;
 }
 
 input,
@@ -21,11 +40,10 @@ textarea {
 }
 
 body {
-  background-color: hsla(239, 26%, 60%, 1);
-  color: white;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.4;
+  background-color: var(--clr-background);
+  color: var(--clr-text);
+  font-family: var(--ff-primary);
+  font-size: var(--fs-default);
   padding: 3rem 1rem 1rem;
 }
 
@@ -35,17 +53,20 @@ header {
 }
 
 #title {
-  font-weight: 500;
+  font-family: var(--ff-heading);
+  font-weight: var(--fw-bold);
+  font-size: 2.5rem;
   padding-bottom: 0.75rem;
 }
 
 #description {
-  font-weight: 300;
+  font-weight: var(--fw-light);
   font-style: italic;
+  font-size: 1.15rem;
 }
 
 .container {
-  background-color: hsla(239, 26%, 18%, 0.75);
+  background-color: var(--clr-container);
   margin-inline: auto;
   padding: 0.75rem 2.5rem;
   border-radius: 0.25rem;
@@ -66,14 +87,15 @@ label {
   display: block;
 }
 
+input,
 select {
-  background-color: white;
-  color: #495057;
+  background-color: var(--clr-background);
+  color: var(--clr-container);
 }
 
 input[type="radio"],
 input[type="checkbox"] {
-  margin: 0.4rem 0.25rem 0.4rem 0;
+  accent-color: var(--clr-dark-accent);
   min-width: 1.25rem;
   min-height: 1.25rem;
 }
@@ -86,14 +108,58 @@ input[type="checkbox"] {
   border-radius: 0.25rem;
 }
 
-.selection-label {
+.grid,
+.improvement-grid {
+  --minimum-width: 15rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--minimum-width), 1fr));
+  column-gap: 2rem;
+}
+
+.flex {
   display: flex;
-  gap: 0.5rem;
+  justify-items: center;
+  padding-top: 2rem;
+}
+
+.rating-label {
+  flex: 1;
+  text-align: center;
+  margin-inline: auto;
+}
+
+@media (max-width: 37.5em) {
+  .flex {
+    flex-direction: column;
+  }
+
+  .rating-label {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1rem 2rem 7.5rem;
+    gap: 1rem;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .rating-label p {
+    width: 100%;
+    text-align: start;
+  }
+}
+
+.improvement-grid {
+  padding-top: 2rem;
+}
+
+.improvement-card {
+  display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .btn {
-  background-color: hsla(143, 52%, 45%, 1);
+  background-color: var(--clr-accent);
   color: white;
   padding: 0.8rem;
   cursor: pointer;

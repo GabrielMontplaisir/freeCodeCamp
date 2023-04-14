@@ -8,86 +8,92 @@
       content="Creating a Product Landing Page for freeCodeCamp Responsive HTML Certification"
     />
     <title>Product Landing Page</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@900&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header id="header">
       <img
         id="header-img"
-        src="https://cdn.freecodecamp.org/testable-projects-fcc/images/product-landing-page-logo.png"
-        alt="Landing page logo"
+        alt="Logo"
+        src="https://imgs.search.brave.com/GLoaH6Qo1rYzEQmtJ_68sfatkAUK1kOyDlKM0UG-RB4/rs:fit:256:256:1/g:ce/aHR0cHM6Ly93d3cu/aWNvbnNkYi5jb20v/aWNvbnMvZG93bmxv/YWQvd2hpdGUvbXVz/aWMtMi0yNTYucG5n"
       />
       <nav id="nav-bar">
         <ul>
           <li><a class="nav-link" href="#features">Features</a></li>
-          <li><a class="nav-link" href="#how-it-works">How it Works</a></li>
+          <li><a class="nav-link" href="#benefits">Benefits</a></li>
           <li><a class="nav-link" href="#pricing">Pricing</a></li>
         </ul>
       </nav>
     </header>
     <main>
       <section id="hero">
-        <h1>Handcrafted, home-made masterpieces</h1>
+        <h1>The future of music is here</h1>
         <form
           id="form"
           method="post"
           action="https://www.freecodecamp.com/email-submit"
         >
-          <input
-            id="email"
-            type="email"
-            name="email"
-            placeholder="Enter your email address"
-            required
-          />
-          <input id="submit" type="submit" value="Get started" />
+          <label for="email">Join the musical revolution:</label>
+          <div class="newsletter">
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Enter your email address"
+              required
+            />
+            <input id="submit" type="submit" value="Join" />
+          </div>
         </form>
       </section>
       <section id="features">
-        <article class="grid">
-          <i class="fa fa-3x fa-fire"></i>
-          <h2>Premium Materials</h2>
+        <article>
+          <i class="fa fa-3x fa-chalkboard-teacher"></i>
+          <h2>Learn at your own pace</h2>
           <p>
-            Our trombones use the shiniest brass which is sourced locally. This
-            will increase the longevity of your purchase.
+            Take your time to go through the lessons. Practice as much as you
+            need, to your heart's content.
           </p>
         </article>
-        <article class="grid">
-          <i class="fa fa-3x fa-truck"></i>
-          <h2>Fast Shipping</h2>
-          <p>
-            We make sure you recieve your trombone as soon as we have finished
-            making it. We also provide free returns if you are not satisfied.
-          </p>
+        <article>
+          <i class="fa fa-3x fa-toolbox"></i>
+          <h2>All the tools at your disposal</h2>
+          <p>Access to music sheets, metronomes, video tutorials and more!</p>
         </article>
-        <article class="grid">
-          <i class="fa fa-3x fa-battery-full"></i>
-          <h2>Quality Assurance</h2>
+        <article>
+          <i class="fa fa-3x fa-graduation-cap"></i>
+          <h2>Learn from world-class instructors</h2>
           <p>
-            For every purchase you make, we will ensure there are no damages or
-            faults and we will check and test the pitch of your instrument.
+            Video tutorials and lessons from expert coaches, instrumentalists,
+            musicians and artists!
           </p>
         </article>
       </section>
-      <section id="how-it-works">
+      <section id="benefits">
         <iframe
           id="video"
-          src="https://www.youtube-nocookie.com/embed/y8Yv4pnO7qc?rel=0&amp;controls=0&amp;showinfo=1"
+          src="https://www.youtube.com/embed/R0JKCYZ8hng"
           frameborder="0"
           allowfullscreen=""
         ></iframe>
       </section>
       <section id="pricing">
-        <article class="trombone">
-          <h3 class="trombone-type">Tenor trombone</h3>
-          <p class="trombone-price">$600</p>
-          <ul class="trombone-description">
+        <article class="free">
+          <h3 class="plan-type">Free</h3>
+          <p class="plan-price">$600<span>/ year</span></p>
+          <ul class="plan-description">
             <li>Lorem ipsum.</li>
             <li>Lorem ipsum.</li>
             <li>Lorem ipsum dolor.</li>
@@ -95,10 +101,10 @@
           </ul>
           <button>Select</button>
         </article>
-        <article class="trombone">
-          <h3 class="trombone-type">Bass trombone</h3>
-          <p class="trombone-price">$900</p>
-          <ul class="trombone-description">
+        <article class="plus">
+          <h3 class="plan-type">Plus</h3>
+          <p class="plan-price">$900<span>/ year</span></p>
+          <ul class="plan-description">
             <li>Lorem ipsum.</li>
             <li>Lorem ipsum.</li>
             <li>Lorem ipsum dolor.</li>
@@ -106,10 +112,10 @@
           </ul>
           <button>Select</button>
         </article>
-        <article class="trombone">
-          <h3 class="trombone-type">Valve trombone</h3>
-          <p class="trombone-price">$1200</p>
-          <ul class="trombone-description">
+        <article class="premium">
+          <h3 class="plan-type">Premium</h3>
+          <p class="plan-price">$1200<span>/ year</span></p>
+          <ul class="plan-description">
             <li>Plays similar to a Trumpet</li>
             <li>Great for Jass Bands</li>
             <li>Lorem ipsum dolor.</li>
@@ -125,7 +131,7 @@
         <li><a href="#">Terms</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
-      <p>Copyright 2016, Original Trombones</p>
+      <p>&copy; Copyright 2023, Gabriel Montplaisir</p>
     </footer>
   </body>
 </html>

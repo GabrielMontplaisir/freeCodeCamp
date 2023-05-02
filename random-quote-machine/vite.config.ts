@@ -5,7 +5,7 @@ import macrosPlugin from "vite-plugin-babel-macros";
 // https://vitejs.dev/config/
 export default defineConfig({
   // Set base: to the current directory.
-  base: "/freeCodeCamp/frontend-dev-libraries/random-quote-machine/",
+  base: "/freeCodeCamp/random-quote-machine/",
 
   plugins: [react(), macrosPlugin()],
   // Move the index.html to the src folder, and assets to their own folder in the PWD.

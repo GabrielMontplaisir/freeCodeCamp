@@ -16,3 +16,7 @@ Collection of projects for freeCodeCamp.org.
 - [Caesar Cipher](https://github.com/GabrielMontplaisir/freeCodeCamp/blob/main/javascript/caesar-cipher.js)
 - [Telephone Number Validator (RegEx)](https://github.com/GabrielMontplaisir/freeCodeCamp/blob/main/javascript/telephone-number-validator.js)
 - [Cash Register](https://github.com/GabrielMontplaisir/freeCodeCamp/blob/main/javascript/cash-register.js)
+
+## Frontend Developement Libraries
+
+- [Random Quote Machine](https://github.com/GabrielMontplaisir/freeCodeCamp/tree/main/random-quote-machine) ([Live](https://gabrielmontplaisir.com/freeCodeCamp/random-quote-machine))

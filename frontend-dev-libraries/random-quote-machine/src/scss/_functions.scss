@@ -1,0 +1,30 @@
+// Add -webkit-* -moz-* and -ms-* and regular version in a single line.
+// Usage @include prefix(transform, rotate(), webkit moz ms)
+
+@mixin prefix($property, $value, $prefixes) {
+  @each $prefix in $prefixes {
+    -#{$prefix}-#{$property}: $value;
+  }
+  #{$property}: $value;
+}
+
+// Create a function for using SASS variables with hsl().
+// Usage: hslac($<variable (usually in _root.scss>, <alpha decimal>)
+@function hslac($color, $alpha) {
+  @if (type-of($color) == "color") {
+    @return hsla(hue($color), saturation($color), lightness($color), $alpha);
+  } @else {
+    @error "You didn't pass a color object";
+  }
+}
+
+// Takes a list of FontAwesome icon names (pulled from [Data-Icon]) as arguments
+// and your selected colors for each. Outputs them as separate classes
+// usage: icon-colors("html5" #080, "css3" #800, etc.)
+@mixin icon-colors($args...) {
+  @each $name, $color in $args {
+    [data-icon="#{$name}"] {
+      color: $color;
+    }
+  }
+}

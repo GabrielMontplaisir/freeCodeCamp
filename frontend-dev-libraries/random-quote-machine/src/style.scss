@@ -1,0 +1,63 @@
+// Import scss folder
+@use "scss" as *;
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,600&family=Montserrat:wght@400&display=swap");
+
+body {
+  display: grid;
+  place-content: center;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-default);
+  font-weight: var(--fw-regular);
+  background-color: var(--clr-background);
+  color: var(--clr-text);
+
+  transition: background-color 1s ease;
+}
+
+main {
+  padding-inline: 1.5rem;
+  max-width: 48rem;
+}
+
+.quote-container {
+  min-height: 25rem;
+
+  #text {
+    font-family: var(--ff-headings);
+    font-weight: var(--ff-semi-bold);
+    font-size: clamp(1rem, 1rem + 5vw, 3rem);
+    font-style: italic;
+  }
+
+  #author {
+    font-size: 1.25rem;
+    text-align: end;
+  }
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1.25rem;
+
+  #new-quote,
+  a {
+    background-color: var(--clr-text);
+    color: var(--clr-background);
+    padding-inline: 1rem;
+    border-radius: 0.25rem;
+
+    transition: color 1s ease;
+  }
+
+  #new-quote {
+    cursor: pointer;
+  }
+
+  a {
+    display: grid;
+    place-content: center;
+    aspect-ratio: 1/1;
+  }
+}

@@ -1,0 +1,106 @@
+@use "functions" as f;
+
+/* Box Sizing */
+*,
+*::before,
+*::after {
+  @include f.prefix(box-sizing, border-box, webkit moz ms);
+}
+
+/* Remove Margins */
+// * {
+//   margin: 0;
+//   padding: 0;
+//   font: inherit;
+// }
+
+/* Make height full monitor height */
+html,
+body {
+  min-height: 100vh;
+}
+
+/* Default line height & font smoothing */
+body {
+  line-height: 1.5;
+}
+
+/* Remove list bullets */
+// ul,
+// ol {
+//   list-style: none;
+// }
+
+/* Make scrolling smooth when clicking an anchor */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Match image width */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  /* height: auto; */
+}
+
+/* Remove bult-in form typography */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  border: none;
+}
+
+button,
+[role="button"],
+label,
+select {
+  > * {
+    pointer-events: none;
+  }
+}
+
+/* Maintain style even if the text is too long */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

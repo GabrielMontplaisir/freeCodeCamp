@@ -1,5 +1,6 @@
 // Import scss folder
 @use "scss" as *;
+// Import Google Fonts
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,600&family=Montserrat:wght@400&display=swap");
 
 body {
@@ -10,13 +11,23 @@ body {
   font-weight: var(--fw-regular);
   background-color: var(--clr-background);
   color: var(--clr-text);
-
-  transition: background-color 1s ease;
+  // Add transition for the background color every time we generate a new quote.
+  transition: var(--transition);
 }
 
 main {
   padding-inline: 1.5rem;
-  max-width: 48rem;
+  max-width: 55rem;
+}
+
+main::before {
+  content: open-quote;
+  position: fixed;
+  z-index: -1;
+  font-size: 50rem;
+  color: hsl(0, 0%, 40%, 0.3);
+  top: -15rem;
+  left: 0;
 }
 
 .quote-container {
@@ -25,7 +36,11 @@ main {
   #text {
     font-family: var(--ff-headings);
     font-weight: var(--ff-semi-bold);
-    font-size: clamp(1rem, 1rem + 5vw, 3rem);
+    font-size: clamp(
+      1rem,
+      1rem + 5vw,
+      3rem
+    ); // Clamp the text to generate properly on smaller screen sizes.
     font-style: italic;
   }
 
@@ -48,7 +63,7 @@ main {
     padding-inline: 1rem;
     border-radius: 0.25rem;
 
-    transition: color 1s ease;
+    transition: var(--transition);
   }
 
   #new-quote {
@@ -60,4 +75,13 @@ main {
     place-content: center;
     aspect-ratio: 1/1;
   }
+}
+
+// Custom classes for the fade animation whenever we generate a new quote.
+.fade-in {
+  animation: fade-in 2s ease;
+}
+
+.fade-out {
+  animation: fade-out 1s ease;
 }

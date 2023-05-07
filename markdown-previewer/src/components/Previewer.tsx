@@ -1,7 +1,11 @@
 import { marked } from "marked";
 import DOMPurify from "isomorphic-dompurify";
 
-export default function Previewer({ content }: any) {
+interface Props {
+  content: string;
+}
+
+export default function Previewer({ content }: Props) {
   marked.use({
     breaks: true,
     gfm: true,

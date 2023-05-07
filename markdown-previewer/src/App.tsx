@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { BaseSyntheticEvent, useState } from "react";
 import Editor from "./components/Editor";
 import Previewer from "./components/Previewer";
+import SplitPane from "./components/SplitPane";
 
 const preview = `# Welcome to my React Markdown Previewer!
 ## This is a sub-heading...
@@ -19,7 +20,7 @@ function anotherExample(firstLine, lastLine) {
 
 You can also make text **bold**, _italic_, or **_both_**! You can even ~~cross stuff out~~.
 
-You can create hyperlinks as follows: [link](https://www.freecodecamp.org).
+You can create hyperlinks as follows: [link](https://www.gabrielmontplaisir.com).
 You can also create:
 > Block Quotes!
 
@@ -42,7 +43,7 @@ Here | Here too | Here again!
         - Mix it up with unordered and ordered lists!
 
 Finally, you can add some images by adding an exclamation point to your "link".
-![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
+![Markdown Logo](https://cdn.iconscout.com/icon/free/png-256/free-markdown-3627132-3029540.png?f=webp&w=256)
 
 Enjoy using this Markdown Previewer!
 `;
@@ -50,17 +51,17 @@ Enjoy using this Markdown Previewer!
 export default function App() {
   const [mark, setMark] = useState(preview);
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: BaseSyntheticEvent) => {
     setMark(event.target.value);
   };
 
   return (
     <main>
       <h1 className="title">Markdown Previewer</h1>
-      <div className="work-station">
-        <Editor handleChange={handleChange} content={preview} />
-        <Previewer content={mark} />
-      </div>
+      <SplitPane
+        left={<Editor handleChange={handleChange} content={preview} />}
+        right={<Previewer content={mark} />}
+      />
     </main>
   );
 }

@@ -1,4 +1,6 @@
 import { ChangeEventHandler } from "react";
+import Header from "./Header";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 interface Props {
   handleChange: ChangeEventHandler;
   content: string;
@@ -7,7 +9,7 @@ interface Props {
 export default function Editor({ handleChange, content }: Props) {
   return (
     <section className="edit-section">
-      <h2 className="header">Editor</h2>
+      <Header id="editor-btn" title="Editor" logo={faPenToSquare} />
       <textarea
         id="editor"
         onChange={handleChange}

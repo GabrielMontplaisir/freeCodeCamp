@@ -1,9 +1,12 @@
 :root {
   color-scheme: light dark;
   // Primaries
-  --clr-text: hsl(60, 6%, 94%);
-  --clr-background: hsl(0,0%,20%);
-  --clr-card: hsl(60, 1%, 40%);
+
+  --clr-primary: hsl(192, 15%, 94%);
+  --clr-background: hsl(211, 31%, 18%);
+  --clr-card: hsl(211, 28%, 29%);
+  --clr-accent: hsl(28, 79%, 52%);
+  --clr-grey: hsl(204, 8%, 76%);
 
   --ff-primary: "Montserrat", sans-serif;
   --ff-headings: "Crimson Text", serif;

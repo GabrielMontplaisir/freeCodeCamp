@@ -5,12 +5,16 @@ body {
   font-family: var(--ff-primary);
   font-size: var(--fs-default);
   font-weight: var(--fw-regular);
-  color: var(--clr-text);
-  background-color: var(--clr-card);
+  color: var(--clr-primary);
+  background-color: var(--clr-background);
+}
+
+a {
+  color: var(--clr-accent);
 }
 
 .title,
-.header {
+.section-title {
   margin: 0;
   padding: 0;
 }
@@ -20,10 +24,27 @@ body {
 }
 
 .header {
-  font-size: var(--fs-default);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.15rem 0.25rem 0.15rem 2rem;
   border: 1px solid var(--clr-background);
-  padding-left: 2rem;
   background-color: var(--clr-card);
+  z-index: inherit;
+
+  .section-title {
+    font-size: var(--fs-default);
+  }
+
+  .expand-btn {
+    margin-left: auto;
+    background-color: inherit;
+    cursor: pointer;
+  }
+
+  .expand-btn:hover {
+    transform: scale(1.15);
+  }
 }
 
 .work-station {
@@ -67,7 +88,10 @@ body {
 
 .right-section {
   width: 100%;
-  padding-right: 0.75rem;
+}
+
+.preview-text {
+  padding-inline: 0.75rem;
 }
 
 @media (max-width: 53em) {
@@ -77,7 +101,7 @@ body {
   }
 
   .right-section {
-    padding-inline: 0.75rem;
+    margin: 0;
   }
 }
 
@@ -85,7 +109,7 @@ body {
 
 pre,
 code {
-  background-color: white;
+  background-color: var(--clr-card);
   border-radius: 0.1rem;
   padding-inline: 0.25rem;
   white-space: break-spaces;
@@ -94,12 +118,12 @@ code {
 
 code {
   margin-inline: 0.25rem;
-  color: var(--clr-card);
+  color: var(--clr-grey);
 }
 
 blockquote {
   padding-left: 0.75rem;
-  border-left: 3px solid var(--clr-background);
+  border-left: 3px solid var(--clr-grey);
 }
 
 table {
@@ -107,6 +131,10 @@ table {
 
   & * {
     padding: 0.35rem;
-    border: 2px solid var(--clr-background);
+    border: 2px solid var(--clr-grey);
   }
+}
+
+.hidden {
+  display: none;
 }

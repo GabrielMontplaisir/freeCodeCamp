@@ -33,6 +33,10 @@ export default function LeftPane({ children, leftWidth, setLeftWidth }: Props) {
     };
   }, [leftRef, leftWidth, setLeftWidth, handleResize]);
 
+  useEffect(() => {
+    if (window.innerWidth < 850) setLeftWidth(window.innerWidth);
+  }, [setLeftWidth]);
+
   return (
     <div className="left-section" ref={leftRef}>
       {children}

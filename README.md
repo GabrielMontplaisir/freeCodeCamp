@@ -21,3 +21,4 @@ Collection of projects for freeCodeCamp.org.
 
 - [Random Quote Machine](https://github.com/GabrielMontplaisir/freeCodeCamp/tree/main/random-quote-machine) ([Live](https://gabrielmontplaisir.com/freeCodeCamp/random-quote-machine))
 - [Markdown Previewer](https://github.com/GabrielMontplaisir/freeCodeCamp/tree/main/markdown-previewer) ([Live](https://gabrielmontplaisir.com/freeCodeCamp/markdown-previewer))
+- [Drum Machine](https://github.com/GabrielMontplaisir/freeCodeCamp/tree/main/drum-machine) ([Live](https://gabrielmontplaisir.com/freeCodeCamp/drum-machine))

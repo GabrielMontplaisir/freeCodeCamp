@@ -5,7 +5,7 @@ interface Props {
   name: string;
   sound: string;
   power: boolean;
-  handleMouseDown: MouseEventHandler;
+  handleMouseDown: any;
   handleMouseUp: MouseEventHandler;
 }
 
@@ -33,7 +33,7 @@ export default function DrumPad({
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
     >
-      {id}
+      {id.toUpperCase()}
       <audio id={id} src={sound}></audio>
     </button>
   );

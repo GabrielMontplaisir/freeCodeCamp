@@ -1,4 +1,4 @@
-import { useState, useEffect, BaseSyntheticEvent } from "react";
+import { useState, useEffect, BaseSyntheticEvent, useRef } from "react";
 import DrumPad from "./components/DrumPad";
 import { capitalize, replaceHyphen } from "./components/functions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,36 +6,29 @@ import { faVolumeLow, faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
 
 const soundFolder = "../src/assets/sounds/";
 const drumPadArray = [
-  { id: "Q", name: "heater-1", sound: `${soundFolder}heater-1.mp3` },
-  { id: "W", name: "heater-2", sound: `${soundFolder}heater-2.mp3` },
-  { id: "E", name: "heater-3", sound: `${soundFolder}heater-3.mp3` },
-  { id: "A", name: "heater-4", sound: `${soundFolder}heater-4.mp3` },
-  { id: "S", name: "clap", sound: `${soundFolder}clap.mp3` },
-  { id: "D", name: "open-hh", sound: `${soundFolder}open-hh.mp3` },
-  { id: "Z", name: "kick-n-hat", sound: `${soundFolder}kick-n-hat.mp3` },
-  { id: "X", name: "kick", sound: `${soundFolder}kick.mp3` },
-  { id: "C", name: "closed-hh", sound: `${soundFolder}closed-hh.mp3` },
+  { id: "q", name: "heater-1", sound: `${soundFolder}heater-1.mp3` },
+  { id: "w", name: "heater-2", sound: `${soundFolder}heater-2.mp3` },
+  { id: "e", name: "heater-3", sound: `${soundFolder}heater-3.mp3` },
+  { id: "a", name: "heater-4", sound: `${soundFolder}heater-4.mp3` },
+  { id: "s", name: "clap", sound: `${soundFolder}clap.mp3` },
+  { id: "d", name: "open-hh", sound: `${soundFolder}open-hh.mp3` },
+  { id: "z", name: "kick-n-hat", sound: `${soundFolder}kick-n-hat.mp3` },
+  { id: "x", name: "kick", sound: `${soundFolder}kick.mp3` },
+  { id: "c", name: "closed-hh", sound: `${soundFolder}closed-hh.mp3` },
 ];
 
 export default function App() {
   const [power, setPower] = useState(true);
   const [currentSound, setCurrentSound] = useState("");
   const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(50);
+  let audioVolume = useRef(50);
 
   function handlePower() {
     setPower(!power);
-    if (!power) {
-      setCurrentSound("Hello!");
-      setTimeout(() => {
-        setCurrentSound("");
-      }, 1000);
-    } else {
-      setCurrentSound("Goodbye!");
-      setTimeout(() => {
-        setCurrentSound("");
-      }, 1000);
-    }
+    !power ? setCurrentSound("Hello!") : setCurrentSound("Goodbye!");
+    setTimeout(() => {
+      setCurrentSound("");
+    }, 1000);
   }
 
   function handleKeyUp() {
@@ -59,21 +52,21 @@ export default function App() {
 
   function handleChange(e: BaseSyntheticEvent) {
     if (power) {
-      setVolume(e.target.value);
+      audioVolume.current = parseInt(e.target.value);
       setPlaying(true);
-      setCurrentSound(`Volume: ${volume}`);
+      setCurrentSound(`Volume: ${audioVolume.current}`);
     }
   }
 
   function handleMouseDown(e: { key: string; target?: { value: string } }) {
-    const value = (e.target as HTMLButtonElement).value || e.key.toUpperCase();
-    if (power) {
+    const value = e.key ?? (e.target as HTMLButtonElement).value;
+    const padKey = drumPadArray.find(({ id }) => value === id);
+    if (power && value === padKey?.id) {
       setPlaying(true);
       const audio = document.getElementById(value) as HTMLMediaElement;
-      audio.volume = volume / 100;
+      audio.volume = audioVolume.current / 100 || 0;
       document.querySelector(`[value=${value}]`)?.classList.add("active");
-      const string = drumPadArray.find(({ id }) => value === id);
-      if (string) setCurrentSound(capitalize(replaceHyphen(string.name)));
+      if (padKey) setCurrentSound(capitalize(replaceHyphen(padKey.name)));
       if (audio) audio.play();
     }
   }
@@ -120,7 +113,7 @@ export default function App() {
           type="range"
           min={0}
           max={100}
-          defaultValue={volume}
+          defaultValue={audioVolume.current}
           onChange={handleChange}
         />
         <FontAwesomeIcon icon={faVolumeHigh} />

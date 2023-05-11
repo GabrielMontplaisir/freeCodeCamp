@@ -1,0 +1,29 @@
+:root {
+  // Default Color Schemes
+  color-scheme: light dark;
+
+  // 16px
+  --fs-default: 1rem;
+
+  // Font Weights
+  --fw-thin: 100;
+  --fw-xtra-light: 200;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semi-bold: 600;
+  --fw-bold: 700;
+  --fw-xtra-bold: 800;
+  --fw-black: 900;
+
+  // Colors
+  --clr-primary: hsl(280, 7%, 92%);
+  --clr-background: hsl(248, 46%, 33%);
+  --clr-card: hsl(250, 37%, 48%);
+  --clr-accent: hsl(50, 99%, 49%);
+  --clr-dark: hsl(356, 100%, 6%);
+
+  // Font Family
+  --ff-primary: "Montserrat", sans-serif;
+  --ff-headings: "Crimson Text", serif;
+}

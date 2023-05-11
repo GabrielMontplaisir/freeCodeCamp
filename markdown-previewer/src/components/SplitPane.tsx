@@ -1,5 +1,4 @@
 import React, { useState, createRef, useEffect } from "react";
-// import { splitPaneContext } from "./Contexts";
 import LeftPane from "./LeftPane";
 
 interface Props {

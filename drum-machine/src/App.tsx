@@ -4,24 +4,25 @@ import { capitalize, replaceHyphen } from "./components/functions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeLow, faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
 
-const soundFolder = "../src/assets/sounds/";
+const soundFolder = "https://s3.amazonaws.com/freecodecamp/drums/";
 const drumPadArray = [
-  { id: "q", name: "heater-1", sound: `${soundFolder}heater-1.mp3` },
-  { id: "w", name: "heater-2", sound: `${soundFolder}heater-2.mp3` },
-  { id: "e", name: "heater-3", sound: `${soundFolder}heater-3.mp3` },
-  { id: "a", name: "heater-4", sound: `${soundFolder}heater-4.mp3` },
-  { id: "s", name: "clap", sound: `${soundFolder}clap.mp3` },
-  { id: "d", name: "open-hh", sound: `${soundFolder}open-hh.mp3` },
-  { id: "z", name: "kick-n-hat", sound: `${soundFolder}kick-n-hat.mp3` },
-  { id: "x", name: "kick", sound: `${soundFolder}kick.mp3` },
-  { id: "c", name: "closed-hh", sound: `${soundFolder}closed-hh.mp3` },
+  { id: "q", name: "heater-1", sound: `${soundFolder}Heater-1.mp3` },
+  { id: "w", name: "heater-2", sound: `${soundFolder}Heater-2.mp3` },
+  { id: "e", name: "heater-3", sound: `${soundFolder}Heater-3.mp3` },
+  { id: "a", name: "heater-4", sound: `${soundFolder}Heater-4_1.mp3` },
+  { id: "s", name: "clap", sound: `${soundFolder}Heater-6.mp3` },
+  { id: "d", name: "open-hh", sound: `${soundFolder}Dsc_Oh.mp3` },
+  { id: "z", name: "kick-n-hat", sound: `${soundFolder}Kick_n_Hat.mp3` },
+  { id: "x", name: "kick", sound: `${soundFolder}RP4_KICK_1.mp3` },
+  { id: "c", name: "closed-hh", sound: `${soundFolder}Cev_H2.mp3` },
 ];
 
 export default function App() {
   const [power, setPower] = useState(true);
   const [currentSound, setCurrentSound] = useState("");
   const [playing, setPlaying] = useState(false);
-  let audioVolume = useRef(50);
+  const audioVolume = useRef(50);
+  const volumeSlider = document.getElementById("volume");
 
   function handlePower() {
     setPower(!power);
@@ -32,9 +33,9 @@ export default function App() {
   }
 
   function handleKeyUp() {
-    document.querySelectorAll(".drum-pad").forEach((pad) => {
-      pad.classList.remove("active");
-    });
+    document
+      .querySelectorAll(".drum-pad")
+      .forEach((pad) => pad.classList.remove("active"));
     setPlaying(false);
     if (playing) {
       setTimeout(() => {
@@ -43,23 +44,9 @@ export default function App() {
     }
   }
 
-  function handleKeyDown(e: { key: string }) {
-    if (e.key === "p") {
-      handlePower();
-    }
-    handleMouseDown(e);
-  }
-
-  function handleChange(e: BaseSyntheticEvent) {
-    if (power) {
-      audioVolume.current = parseInt(e.target.value);
-      setPlaying(true);
-      setCurrentSound(`Volume: ${audioVolume.current}`);
-    }
-  }
-
-  function handleMouseDown(e: { key: string; target?: { value: string } }) {
-    const value = e.key ?? (e.target as HTMLButtonElement).value;
+  function handleKeyDown(e: KeyboardEvent): void {
+    if (e.key === "p") handlePower();
+    const value = e.key ?? e;
     const padKey = drumPadArray.find(({ id }) => value === id);
     if (power && value === padKey?.id) {
       setPlaying(true);
@@ -71,11 +58,25 @@ export default function App() {
     }
   }
 
-  if (!power) {
-    document.getElementById("volume")?.setAttribute("disabled", "");
-  } else {
-    document.getElementById("volume")?.removeAttribute("disabled");
+  function handleChange(e: BaseSyntheticEvent) {
+    if (power) {
+      audioVolume.current = parseInt(e.target.value);
+      setPlaying(true);
+      setCurrentSound(`Volume: ${audioVolume.current}`);
+    }
   }
+
+  function handleClick(e: BaseSyntheticEvent) {
+    handleKeyDown(e.target.value);
+    handleKeyUp();
+    setTimeout(() => {
+      setCurrentSound("");
+    }, 300);
+  }
+
+  !power
+    ? volumeSlider?.setAttribute("disabled", "")
+    : volumeSlider?.removeAttribute("disabled");
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
@@ -126,8 +127,7 @@ export default function App() {
             name={name}
             sound={sound}
             power={power}
-            handleMouseDown={handleMouseDown}
-            handleMouseUp={handleKeyUp}
+            handleClick={handleClick}
           />
         ))}
       </section>

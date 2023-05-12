@@ -5,8 +5,7 @@ interface Props {
   name: string;
   sound: string;
   power: boolean;
-  handleMouseDown: any;
-  handleMouseUp: MouseEventHandler;
+  handleClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 export default function DrumPad({
@@ -14,24 +13,24 @@ export default function DrumPad({
   name,
   sound,
   power,
-  handleMouseDown,
-  handleMouseUp,
+  // handleMouseDown,
+  // handleMouseUp,
+  handleClick,
 }: Props) {
   const pads = document.querySelectorAll(".drum-pad");
 
-  if (!power) {
-    pads.forEach((pad) => pad.setAttribute("disabled", ""));
-  } else {
-    pads.forEach((pad) => pad.removeAttribute("disabled"));
-  }
+  !power
+    ? pads.forEach((pad) => pad.setAttribute("disabled", ""))
+    : pads.forEach((pad) => pad.removeAttribute("disabled"));
 
   return (
     <button
       id={name}
       value={id}
       className="drum-pad"
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
+      onClick={handleClick}
+      // onMouseDown={handleMouseDown}
+      // onMouseUp={handleMouseUp}
     >
       {id.toUpperCase()}
       <audio id={id} src={sound}></audio>
